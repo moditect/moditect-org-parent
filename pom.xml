@@ -25,7 +25,7 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Parent POM for all Maven based ModiTect projects</name>
+  <name>moditect-org-parent</name>
   <description>Parent POM for all Maven based ModiTect projects</description>
   <url>https://github.com/moditect</url>
   <inceptionYear>2021</inceptionYear>
