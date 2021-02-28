@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-     Copyright 2021 The ModiTect authors
+    SPDX-License-Identifier: Apache-2.0
 
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
+    Copyright 2021 The ModiTect authors.
 
-         http://www.apache.org/licenses/LICENSE-2.0
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
+        https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -38,20 +40,22 @@
   <properties>
     <!-- !! children should override these properties !! -->
     <project.identifier>moditect</project.identifier>
-    <project.repository>moditect/moditect-org-parent</project.repository>
+    <project.github.repository>moditect/moditect-org-parent</project.github.repository>
     <java.version>1.8</java.version>
     <!-- override if multi-project -->
     <local.repository.path>${project.build.directory}/repository</local.repository.path>
     <!-- override when needed -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.version>3.6.3</maven.version>
     <nexus.url>https://oss.sonatype.org</nexus.url>
-    <repository.url>git@github.com:${project.repository}.git</repository.url>
+    <repository.url>git@github.com:${project.github.repository}.git</repository.url>
     <version.antrun.plugin>3.0.0</version.antrun.plugin>
     <version.clean.plugin>3.1.0</version.clean.plugin>
     <version.compiler.plugin>3.8.1</version.compiler.plugin>
     <version.dependency.plugin>3.1.2</version.dependency.plugin>
     <version.deploy.plugin>3.0.0-M1</version.deploy.plugin>
+    <version.directory.plugin>0.3.1</version.directory.plugin>
     <version.enforcer.plugin>3.0.0-M3</version.enforcer.plugin>
     <version.failsafe.plugin>3.0.0-M5</version.failsafe.plugin>
     <version.git.plugin>3.0.1</version.git.plugin>
@@ -59,9 +63,8 @@
     <version.install.plugin>3.0.0-M1</version.install.plugin>
     <version.javadoc.plugin>3.2.0</version.javadoc.plugin>
     <version.jar.plugin>3.1.2</version.jar.plugin>
-    <version.license.plugin>3.0</version.license.plugin>
+    <version.license.plugin>4.0.rc2</version.license.plugin>
     <version.nexus.plugin>1.6.8</version.nexus.plugin>
-    <version.release.plugin>3.0.0-M1</version.release.plugin>
     <version.resources.plugin>3.1.0</version.resources.plugin>
     <version.source.plugin>3.2.1</version.source.plugin>
     <version.surefire.plugin>3.0.0-M4</version.surefire.plugin>
@@ -93,7 +96,7 @@
 
   <issueManagement>
     <system>github.com</system>
-    <url>https://github.com/${project.repository}/issues</url>
+    <url>https://github.com/${project.github.repository}/issues</url>
   </issueManagement>
 
   <distributionManagement>
@@ -191,11 +194,6 @@
           <version>${version.javadoc.plugin}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>${version.release.plugin}</version>
-        </plugin>
-        <plugin>
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
           <version>${version.nexus.plugin}</version>
@@ -208,7 +206,7 @@
         <plugin>
           <groupId>org.commonjava.maven.plugins</groupId>
           <artifactId>directory-maven-plugin</artifactId>
-          <version>0.1</version>
+          <version>${version.directory.plugin}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -244,6 +242,10 @@
             <exclude>.mvn/wrapper/maven-wrapper.properties</exclude>
             <exclude>.mvn/wrapper/MavenWrapperDownloader.java</exclude>
           </excludes>
+          <mapping>
+            <yml>SCRIPT_STYLE</yml>
+            <toml>SCRIPT_STYLE</toml>
+          </mapping>
         </configuration>
         <executions>
           <execution>
@@ -329,28 +331,6 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <useReleaseProfile>false</useReleaseProfile>
-          <releaseProfiles>publication,gpg</releaseProfiles>
-          <tagNameFormat>v@{project.version}</tagNameFormat>
-          <scmReleaseCommitComment>Preparing @{releaseLabel} release</scmReleaseCommitComment>
-          <scmDevelopmentCommitComment>Preparing next development iteration</scmDevelopmentCommitComment>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>central</serverId>
-          <nexusUrl>${nexus.url}</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
@@ -358,7 +338,9 @@
     <profile>
       <id>publication</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>release</name>
+        </property>
       </activation>
       <build>
         <plugins>
@@ -417,7 +399,9 @@
     <profile>
       <id>gpg</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>release</name>
+        </property>
       </activation>
       <build>
         <plugins>
@@ -444,20 +428,37 @@
     </profile>
 
     <profile>
+      <id>remote-deploy</id>
+      <activation>
+        <property>
+          <name>release</name>
+        </property>
+      </activation>
+      <build>
+        <defaultGoal>deploy</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>central</serverId>
+              <nexusUrl>${nexus.url}</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
       <id>local-deploy</id>
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
-      <distributionManagement>
-        <snapshotRepository>
-          <id>local-snapshot</id>
-          <url>file://${local.repository.path}/snapshot</url>
-        </snapshotRepository>
-        <repository>
-          <id>local-release</id>
-          <url>file://${local.repository.path}/release</url>
-        </repository>
-      </distributionManagement>
+      <properties>
+        <altDeploymentRepository>local::file:${local.repository.path}</altDeploymentRepository>
+      </properties>
       <build>
         <defaultGoal>deploy</defaultGoal>
         <plugins>
@@ -472,26 +473,6 @@
                 </fileset>
               </filesets>
             </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <inherited>false</inherited>
-            <executions>
-              <execution>
-                <id>generate-repository-directories</id>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <target>
-                    <mkdir dir="${local.repository.path}/snapshot" />
-                    <mkdir dir="${local.repository.path}/release" />
-                  </target>
-                </configuration>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
