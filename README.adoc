@@ -3,7 +3,6 @@
 :project-name:       moditect-org-parent
 :project-groupId:    org.moditect
 :project-artifactId: moditect-org-parent
-:project-version:    1.0.0-SNAPSHOT
 
 image:https://github.com/{project-owner}/{project-name}/workflows/Build/badge.svg["Build Status", link="https://github.com/{project-owner}/{project-name}/actions"]
 image:https://img.shields.io/maven-central/v/{project-groupId}/{project-artifactId}.svg[Download, link="https://search.maven.org/#search|ga|1|g:{project-groupId} AND a:{project-artifactId}"]
@@ -14,11 +13,15 @@ Parent POM for all Maven based ModiTect projects.
 
 == Profiles
 
-The parent POM enables the following profiles:
+The parent POM enables the following profiles on itself and its children:
 
 * `publication`: generates sources and javadoc JARs.
 * `gpg`: signs all attached artifacts.
 * `local-deploy`: deploys all artifacts to a target directory defined by `${local.repository.path}`
+
+The parent POM enables the following profiles on itself alone:
+
+* `jreleaser`: creates a GitHub release with changelog.
 
 == Requirements
 
@@ -79,4 +82,9 @@ right location
     </configuration>
 </plugin>
 ----
+
+== Release
+
+Releases are triggered by pushing a tag such as `v1.0.0`. You can either tag the repository manually and push the tag
+or use the `Trigger` workflow which updates the version number, creates the tag, and pushes the new tag.
 
