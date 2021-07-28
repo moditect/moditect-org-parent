@@ -25,3 +25,5 @@ test-output
 .DS_Store
 /**/dependency-reduced-pom.xml
 .vscode/
+
+maven-wrapper.jar
