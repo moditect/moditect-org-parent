@@ -3,10 +3,6 @@ name: Trigger
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: "Branch to release from"
-        required: true
-        default: "main"
       version:
         description: "Release version"
         required: true

@@ -477,5 +477,33 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <id>jreleaser</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jreleaser</groupId>
+            <artifactId>jreleaser-maven-plugin</artifactId>
+            <version>0.5.0</version>
+            <inherited>false</inherited>
+            <configuration>
+              <jreleaser>
+                <project>
+                  <java>
+                    <version>8</version>
+                  </java>
+                </project>
+                <release>
+                  <github>
+                    <skipTag>true</skipTag>
+                  </github>
+                </release>
+              </jreleaser>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
