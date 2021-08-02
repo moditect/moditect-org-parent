@@ -62,12 +62,12 @@
     <version.gpg.plugin>1.6</version.gpg.plugin>
     <version.install.plugin>3.0.0-M1</version.install.plugin>
     <version.javadoc.plugin>3.2.0</version.javadoc.plugin>
-    <version.jar.plugin>3.1.2</version.jar.plugin>
+    <version.jar.plugin>3.2.0</version.jar.plugin>
     <version.license.plugin>4.0.rc2</version.license.plugin>
     <version.nexus.plugin>1.6.8</version.nexus.plugin>
-    <version.resources.plugin>3.1.0</version.resources.plugin>
+    <version.resources.plugin>3.2.0</version.resources.plugin>
     <version.source.plugin>3.2.1</version.source.plugin>
-    <version.surefire.plugin>3.0.0-M4</version.surefire.plugin>
+    <version.surefire.plugin>3.0.0-M5</version.surefire.plugin>
     <version.versions.plugin>2.8.1</version.versions.plugin>
   </properties>
 
@@ -493,7 +493,7 @@
           <plugin>
             <groupId>org.jreleaser</groupId>
             <artifactId>jreleaser-maven-plugin</artifactId>
-            <version>0.5.0</version>
+            <version>0.6.0</version>
             <inherited>false</inherited>
             <configuration>
               <jreleaser>
