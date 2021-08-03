@@ -559,5 +559,15 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <id>nochecks</id>
+      <properties>
+        <formatter.skip>true</formatter.skip>
+        <impsort.skip>true</impsort.skip>
+        <license.skip>true</license.skip>
+        <skipTests>true</skipTests>
+      </properties>
+    </profile>
   </profiles>
 </project>
