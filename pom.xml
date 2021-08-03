@@ -58,8 +58,10 @@
     <version.directory.plugin>0.3.1</version.directory.plugin>
     <version.enforcer.plugin>3.0.0-M3</version.enforcer.plugin>
     <version.failsafe.plugin>3.0.0-M5</version.failsafe.plugin>
+    <version.formatter.plugin>2.15.0</version.formatter.plugin>
     <version.git.plugin>3.0.1</version.git.plugin>
     <version.gpg.plugin>1.6</version.gpg.plugin>
+    <version.impsort.plugin>1.6.0</version.impsort.plugin>
     <version.install.plugin>3.0.0-M1</version.install.plugin>
     <version.javadoc.plugin>3.2.0</version.javadoc.plugin>
     <version.jar.plugin>3.2.0</version.jar.plugin>
@@ -216,6 +218,16 @@
           <artifactId>directory-maven-plugin</artifactId>
           <version>${version.directory.plugin}</version>
         </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>${version.formatter.plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code</groupId>
+          <artifactId>impsort-maven-plugin</artifactId>
+          <version>${version.impsort.plugin}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -232,6 +244,40 @@
             <configuration>
               <property>rootdir</property>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+        <configuration combine.children="override">
+          <configFile>${rootdir}/etc/eclipse-formatter-config.xml</configFile>
+        </configuration>
+        <executions>
+          <execution>
+            <id>format</id>
+            <goals>
+              <goal>format</goal>
+            </goals>
+            <phase>process-sources</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>net.revelc.code</groupId>
+        <artifactId>impsort-maven-plugin</artifactId>
+        <configuration combine.children="override">
+          <groups>java.,javax.,org.,com.</groups>
+          <removeUnused>true</removeUnused>
+          <staticAfter>true</staticAfter>
+        </configuration>
+        <executions>
+          <execution>
+            <id>sort-imports</id>
+            <goals>
+              <goal>sort</goal>
+            </goals>
+            <phase>process-sources</phase>
           </execution>
         </executions>
       </plugin>
