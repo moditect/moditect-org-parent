@@ -83,6 +83,12 @@ right location
 </plugin>
 ----
 
+Format license headers by invoking
+
+```sh
+$ mvn initialize license:format
+```
+
 == Release
 
 Releases are triggered by pushing a tag such as `v1.0.0`. You can either tag the repository manually and push the tag
