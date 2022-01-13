@@ -24,7 +24,7 @@
 
   <groupId>org.moditect</groupId>
   <artifactId>moditect-org-parent</artifactId>
-  <version>1.1.0.Final</version>
+  <version>1.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>moditect-org-parent</name>
@@ -45,6 +45,7 @@
     <!-- override if multi-project -->
     <local.repository.path>${project.build.directory}/repository</local.repository.path>
     <!-- override when needed -->
+    <enforcer.skip>false</enforcer.skip>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.version>3.6.3</maven.version>
@@ -52,19 +53,20 @@
     <repository.url>git@github.com:${project.github.repository}.git</repository.url>
     <version.antrun.plugin>3.0.0</version.antrun.plugin>
     <version.clean.plugin>3.1.0</version.clean.plugin>
-    <version.compiler.plugin>3.8.1</version.compiler.plugin>
-    <version.dependency.plugin>3.1.2</version.dependency.plugin>
-    <version.deploy.plugin>3.0.0-M1</version.deploy.plugin>
+    <version.compiler.plugin>3.9.0</version.compiler.plugin>
+    <version.dependency.plugin>3.2.0</version.dependency.plugin>
+    <version.deploy.plugin>3.0.0-M2</version.deploy.plugin>
     <version.directory.plugin>0.3.1</version.directory.plugin>
-    <version.enforcer.plugin>3.0.0-M3</version.enforcer.plugin>
+    <version.enforcer.plugin>3.0.0</version.enforcer.plugin>
+    <version.enforcer.extra.rules>1.5.1</version.enforcer.extra.rules>
     <version.failsafe.plugin>3.0.0-M5</version.failsafe.plugin>
     <version.formatter.plugin>2.16.0</version.formatter.plugin>
-    <version.git.plugin>3.0.1</version.git.plugin>
-    <version.gpg.plugin>1.6</version.gpg.plugin>
+    <version.git.plugin>4.9.10</version.git.plugin>
+    <version.gpg.plugin>3.0.1</version.gpg.plugin>
     <version.impsort.plugin>1.6.2</version.impsort.plugin>
     <version.install.plugin>3.0.0-M1</version.install.plugin>
-    <version.javadoc.plugin>3.2.0</version.javadoc.plugin>
-    <version.jar.plugin>3.2.0</version.jar.plugin>
+    <version.javadoc.plugin>3.3.1</version.javadoc.plugin>
+    <version.jar.plugin>3.2.2</version.jar.plugin>
     <version.license.plugin>4.1</version.license.plugin>
     <version.nexus.plugin>1.6.8</version.nexus.plugin>
     <version.resources.plugin>3.2.0</version.resources.plugin>
@@ -348,40 +350,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules combine.children="override">
-                <requireMavenVersion>
-                  <version>${maven.version}</version>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>${java.version}</version>
-                </requireJavaVersion>
-                <enforceBytecodeVersion>
-                  <maxJdkVersion>${java.version}</maxJdkVersion>
-                </enforceBytecodeVersion>
-                <dependencyConvergence/>
-                <requireUpperBoundDeps/>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.3</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
       </plugin>
@@ -539,7 +507,7 @@
           <plugin>
             <groupId>org.jreleaser</groupId>
             <artifactId>jreleaser-maven-plugin</artifactId>
-            <version>0.6.0</version>
+            <version>0.10.0</version>
             <inherited>false</inherited>
             <configuration>
               <jreleaser>
@@ -566,8 +534,57 @@
         <formatter.skip>true</formatter.skip>
         <impsort.skip>true</impsort.skip>
         <license.skip>true</license.skip>
+        <enforcer.skip>true</enforcer.skip>
         <skipTests>true</skipTests>
       </properties>
+    </profile>
+
+    <profile>
+      <id>enforcer</id>
+      <activation>
+        <property>
+          <name>enforcer.skip</name>
+          <value>false</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules combine.children="override">
+                    <requireMavenVersion>
+                      <version>${maven.version}</version>
+                    </requireMavenVersion>
+                    <requireJavaVersion>
+                      <version>${java.version}</version>
+                    </requireJavaVersion>
+                    <enforceBytecodeVersion>
+                      <maxJdkVersion>${java.version}</maxJdkVersion>
+                    </enforceBytecodeVersion>
+                    <dependencyConvergence/>
+                    <requireUpperBoundDeps/>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>extra-enforcer-rules</artifactId>
+                <version>${version.enforcer.extra.rules}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 </project>
