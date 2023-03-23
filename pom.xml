@@ -3,7 +3,7 @@
 
     SPDX-License-Identifier: Apache-2.0
 
-    Copyright 2021 The ModiTect authors.
+    Copyright 2021-2023 The ModiTect authors.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 
   <groupId>org.moditect</groupId>
   <artifactId>moditect-org-parent</artifactId>
-  <version>1.2.0.Final</version>
+  <version>1.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>moditect-org-parent</name>
@@ -51,28 +51,29 @@
     <maven.version>3.6.3</maven.version>
     <nexus.url>https://oss.sonatype.org</nexus.url>
     <repository.url>git@github.com:${project.github.repository}.git</repository.url>
+    <project.build.outputTimestamp>${git.build.time}</project.build.outputTimestamp>
     <version.antrun.plugin>3.0.0</version.antrun.plugin>
-    <version.clean.plugin>3.1.0</version.clean.plugin>
-    <version.compiler.plugin>3.9.0</version.compiler.plugin>
-    <version.dependency.plugin>3.2.0</version.dependency.plugin>
-    <version.deploy.plugin>3.0.0-M2</version.deploy.plugin>
+    <version.clean.plugin>3.2.0</version.clean.plugin>
+    <version.compiler.plugin>3.11.0</version.compiler.plugin>
+    <version.dependency.plugin>3.5.0</version.dependency.plugin>
+    <version.deploy.plugin>3.1.0</version.deploy.plugin>
     <version.directory.plugin>0.3.1</version.directory.plugin>
-    <version.enforcer.plugin>3.0.0</version.enforcer.plugin>
-    <version.enforcer.extra.rules>1.5.1</version.enforcer.extra.rules>
-    <version.failsafe.plugin>3.0.0-M5</version.failsafe.plugin>
-    <version.formatter.plugin>2.16.0</version.formatter.plugin>
+    <version.enforcer.plugin>3.2.1</version.enforcer.plugin>
+    <version.enforcer.extra.rules>1.6.1</version.enforcer.extra.rules>
+    <version.failsafe.plugin>3.0.0</version.failsafe.plugin>
+    <version.formatter.plugin>2.22.0</version.formatter.plugin>
     <version.git.plugin>4.9.10</version.git.plugin>
     <version.gpg.plugin>3.0.1</version.gpg.plugin>
-    <version.impsort.plugin>1.6.2</version.impsort.plugin>
-    <version.install.plugin>3.0.0-M1</version.install.plugin>
-    <version.javadoc.plugin>3.3.1</version.javadoc.plugin>
-    <version.jar.plugin>3.2.2</version.jar.plugin>
+    <version.impsort.plugin>1.8.0</version.impsort.plugin>
+    <version.install.plugin>3.1.0</version.install.plugin>
+    <version.javadoc.plugin>3.5.0</version.javadoc.plugin>
+    <version.jar.plugin>3.3.0</version.jar.plugin>
     <version.license.plugin>4.1</version.license.plugin>
-    <version.nexus.plugin>1.6.8</version.nexus.plugin>
-    <version.resources.plugin>3.2.0</version.resources.plugin>
+    <version.nexus.plugin>1.6.13</version.nexus.plugin>
+    <version.resources.plugin>3.3.0</version.resources.plugin>
     <version.source.plugin>3.2.1</version.source.plugin>
-    <version.surefire.plugin>3.0.0-M5</version.surefire.plugin>
-    <version.versions.plugin>2.13.0</version.versions.plugin>
+    <version.surefire.plugin>3.0.0</version.surefire.plugin>
+    <version.versions.plugin>2.15.0</version.versions.plugin>
   </properties>
 
   <licenses>
@@ -507,7 +508,7 @@
           <plugin>
             <groupId>org.jreleaser</groupId>
             <artifactId>jreleaser-maven-plugin</artifactId>
-            <version>0.10.0</version>
+            <version>1.5.1</version>
             <inherited>false</inherited>
             <configuration>
               <jreleaser>
