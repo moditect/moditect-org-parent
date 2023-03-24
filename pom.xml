@@ -318,10 +318,8 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Build-Jdk>${java.version} (${java.vendor} ${java.vm.version})</Build-Jdk>
               <Build-Timestamp>${git.commit.author.time}</Build-Timestamp>
               <Build-Revision>${git.commit.id}</Build-Revision>
-              <Build-OS>${os.name} ${os.arch} ${os.version}</Build-OS>
             </manifestEntries>
             <manifest>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
