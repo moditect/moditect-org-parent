@@ -91,6 +91,5 @@ $ mvn initialize license:format
 
 == Release
 
-Releases are triggered by pushing a tag such as `v1.0.0`. You can either tag the repository manually and push the tag
-or use the `Trigger` workflow which updates the version number, creates the tag, and pushes the new tag.
+Releases are triggered by using the `Release` workflow which updates the version number, creates the tag, and pushes the new tag.
 
