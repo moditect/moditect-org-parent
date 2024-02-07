@@ -58,7 +58,6 @@
     <version.compiler.plugin>3.11.0</version.compiler.plugin>
     <version.dependency.plugin>3.5.0</version.dependency.plugin>
     <version.deploy.plugin>3.1.1</version.deploy.plugin>
-    <version.directory.plugin>0.3.1</version.directory.plugin>
     <version.enforcer.plugin>3.2.1</version.enforcer.plugin>
     <version.enforcer.extra.rules>1.6.1</version.enforcer.extra.rules>
     <version.failsafe.plugin>3.0.0</version.failsafe.plugin>
@@ -218,11 +217,6 @@
           <version>${version.gpg.plugin}</version>
         </plugin>
         <plugin>
-          <groupId>org.commonjava.maven.plugins</groupId>
-          <artifactId>directory-maven-plugin</artifactId>
-          <version>${version.directory.plugin}</version>
-        </plugin>
-        <plugin>
           <groupId>net.revelc.code.formatter</groupId>
           <artifactId>formatter-maven-plugin</artifactId>
           <version>${version.formatter.plugin}</version>
@@ -236,26 +230,10 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.commonjava.maven.plugins</groupId>
-        <artifactId>directory-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>resolve-rootdir</id>
-            <goals>
-              <goal>highest-basedir</goal>
-            </goals>
-            <phase>initialize</phase>
-            <configuration>
-              <property>rootdir</property>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>net.revelc.code.formatter</groupId>
         <artifactId>formatter-maven-plugin</artifactId>
         <configuration combine.children="override">
-          <configFile>${rootdir}/etc/eclipse-formatter-config.xml</configFile>
+          <configFile>${maven.multiModuleProjectDirectory}/etc/eclipse-formatter-config.xml</configFile>
         </configuration>
         <executions>
           <execution>
@@ -289,7 +267,7 @@
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <configuration combine.children="override">
-          <header>${rootdir}/etc/license.txt</header>
+          <header>${maven.multiModuleProjectDirectory}/etc/license.txt</header>
           <strictCheck>true</strictCheck>
           <excludes>
             <exclude>README.adoc</exclude>

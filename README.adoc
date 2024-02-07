@@ -68,7 +68,7 @@ right location
     <groupId>com.mycila</groupId>
     <artifactId>license-maven-plugin</artifactId>
     <configuration combine.self="override">
-        <header>${rootdir}/etc/license.txt</header>
+        <header>${maven.multiModuleProjectDirectory}/etc/license.txt</header>
         <strictCheck>true</strictCheck>
         <excludes>
             <exclude>README.md</exclude>
