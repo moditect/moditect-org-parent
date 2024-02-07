@@ -87,7 +87,7 @@ jobs:
           JRELEASER_NEXUS2_MAVEN_CENTRAL_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
         run: |
-          ./mvnw -B --file pom.xml -Pjreleaser jreleaser:release
+          ./mvnw -B -ntp -B --file pom.xml -Pjreleaser jreleaser:release
 
       - name: JReleaser output
         if: always()
