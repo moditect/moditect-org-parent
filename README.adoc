@@ -35,7 +35,6 @@ Given a project named `foo` located at `moditect/foo`:
 <properties>
     <project.identifier>foo</project.identifier>
     <project.github.repository>moditect/foo</project.github.repository>
-    <local.repository.path>/tmp/repository</local.repository.path>
     <java.version>1.8</java.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
