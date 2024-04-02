@@ -322,6 +322,7 @@
               <generateGitPropertiesFilename>${project.build.directory}/git.properties
               </generateGitPropertiesFilename>
               <dateFormat>yyyy-MM-dd'T'HH:mm:ssXXX</dateFormat>
+              <dateFormatTimeZone>UTC</dateFormatTimeZone>
             </configuration>
           </execution>
         </executions>
